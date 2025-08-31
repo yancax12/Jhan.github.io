@@ -2,17 +2,16 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel/serverless";
+import github from "@astrojs/github";
 
-// https://astro.build/config
+// Reemplaza con el nombre de tu repo
+const repo = "Jhan.github.io";
+
 export default defineConfig({
-  site: "https://Jhan.github.io",
-  output: "server",
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true, // Puedes poner false si no quieres analytics
-    },
-  }),
+  site: `https://tu-usuario.github.io/${repo}`,
+  base: `/${repo}/`, // Importante para GitHub Pages
+  output: "static",
+  adapter: github(),
   integrations: [
     mdx(),
     sitemap(),
