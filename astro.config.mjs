@@ -1,17 +1,23 @@
 import { defineConfig } from "astro/config";
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
+import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
 
-// If you are not going to use vercel analytics you can delete the analytics
-// If you want to remove vercel from your project you can do npm uninstall vercel
+// https://astro.build/config
 export default defineConfig({
+  site: "https://Jhan.github.io",
   output: "server",
   adapter: vercel({
     webAnalytics: {
-      enabled: true,
+      enabled: true, // Puedes poner false si no quieres analytics
     },
   }),
+  integrations: [
+    mdx(),
+    sitemap(),
+    tailwind({
+      applyBaseStyles: false,
+    }),
+  ],
 });
-
-//If you don't have vercel the configuration will be empty
-
-//ej : export default defineConfig({});
